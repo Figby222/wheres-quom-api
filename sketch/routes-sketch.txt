@@ -1,0 +1,4 @@
+/
+/play || /game
+/highscores
+/about || /tutorial
