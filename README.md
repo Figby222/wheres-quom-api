@@ -1,1 +1,1 @@
-A Node.js template repository for a RESTFUL API using node express
+A Node.js API repository for Where's quom game (similar to where's waldo)
