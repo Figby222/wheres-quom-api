@@ -1,0 +1,10 @@
+Character table
+name String
+positionX Int
+positionY Int
+MAYBE positionX2 Int
+MAYBE positionY2 Int
+
+MAYBE User OR Scores
+name String but not unique
+highscore Float
