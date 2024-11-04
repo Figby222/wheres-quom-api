@@ -1,21 +1,21 @@
 {
-  "name": "node-rest-api-template",
+  "name": "wheres-quom-api",
   "version": "1.0.0",
-  "description": "A Node.js template repository for a RESTFUL API using node express",
+  "description": "A Node.js API repository for Where's quom game (similar to where's waldo)",
   "main": "index.mjs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Figby222/node-rest-api-template.git"
+    "url": "git+https://github.com/Figby222/wheres-quom-api.git"
   },
   "author": "Figby222",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Figby222/node-rest-api-template/issues"
+    "url": "https://github.com/Figby222/wheres-quom-api/issues"
   },
-  "homepage": "https://github.com/Figby222/node-rest-api-template#readme",
+  "homepage": "https://github.com/Figby222/wheres-quom-api#readme",
   "dependencies": {
     "@prisma/client": "^5.21.1",
     "bcryptjs": "^2.4.3",
