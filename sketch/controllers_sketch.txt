@@ -1,0 +1,4 @@
+createGamePost
+Sign bearer token
+Get game image src
+send bearer token & image src as json
