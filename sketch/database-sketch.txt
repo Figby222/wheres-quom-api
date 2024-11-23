@@ -8,3 +8,7 @@ MAYBE positionY2 Int
 MAYBE User OR Scores
 name String but not unique
 highscore Float
+
+Game table
+id Int
+charactersFound Character array
