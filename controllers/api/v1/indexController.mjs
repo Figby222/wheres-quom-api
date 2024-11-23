@@ -4,4 +4,21 @@ function indexRouteGet(req, res) {
     })
 }
 
-export { indexRouteGet }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+export { indexRouteGet }a
