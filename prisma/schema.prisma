@@ -21,3 +21,9 @@ model Character {
   positionX2 Int
   positionY2 Int
 }
+
+model Game {
+  id        Int       @id @default(autoincrement())
+  startTime DateTime  @default(now())
+  endTime   DateTime?
+}
