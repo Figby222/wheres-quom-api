@@ -14,16 +14,18 @@ datasource db {
 }
 
 model Character {
-  id         Int    @id @default(autoincrement())
-  name       String @unique
-  positionX  Int
-  positionY  Int
-  positionX2 Int
-  positionY2 Int
+  id           Int    @id @default(autoincrement())
+  name         String @unique
+  positionX    Int
+  positionY    Int
+  positionX2   Int
+  positionY2   Int
+  gamesFoundIn Game[] @relation("CharactersFoundInGame")
 }
 
 model Game {
-  id        Int       @id @default(autoincrement())
-  startTime DateTime  @default(now())
-  endTime   DateTime?
+  id              Int         @id @default(autoincrement())
+  startTime       DateTime    @default(now())
+  endTime         DateTime?
+  charactersFound Character[] @relation("CharactersFoundInGame")
 }
