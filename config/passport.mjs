@@ -43,18 +43,18 @@ passport.use(
 passport.use(
     new JwtStrategy(jwtOptions, async (jwt_payload, done) => {
         try {
-            const user = await pool.user.findUnique({
+            const game = await pool.game.findUnique({
                 where: {
                     id: parseInt(jwt_payload.id)
                 }
             });
 
-            if (!user) {
-                done(null, false, { message: "User not found" });
+            if (!game) {
+                done(null, false, { message: "Game not found" });
                 return;
             }
 
-            done(null, user);
+            done(null, game);
         } catch (err) {
             done(err);
         }
