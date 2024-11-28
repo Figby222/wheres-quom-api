@@ -11,9 +11,14 @@ const createGamePost = asyncHandler(async (req, res, next) => {
             next(err);
             return;
         }
+
+        const imageSrc = `${process.env.WEBSITE_URL}/public/levels/01/wheres-quom.webp`
+
         res.json({
+            imageSrc: imageSrc,
             token: token
         })
     })
 })
+
 export { createGamePost }
