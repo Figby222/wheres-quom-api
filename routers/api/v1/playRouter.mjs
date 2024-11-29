@@ -5,6 +5,7 @@ const playRouter = Router();
 
 
 playRouter.post("/", playController.createGamePost);
+playRouter.put("/", playController.changeGameStatePut);
 
 
 export default playRouter;
