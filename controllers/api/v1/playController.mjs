@@ -1,6 +1,7 @@
 import asyncHandler from "express-async-handler";
 import jwt from "jsonwebtoken";
 import db from "../../../db/api/v1/playQueries.mjs";
+import { handleJWTUserAuthorization } from "./util.mjs";
 import "dotenv/config";
 
 const createGamePost = asyncHandler(async (req, res, next) => {
@@ -21,4 +22,13 @@ const createGamePost = asyncHandler(async (req, res, next) => {
     })
 })
 
-export { createGamePost }a
+const changeGameStatePut = [
+    handleJWTUserAuthorization,
+    asyncHandler(async (req, res, next) => {
+        res.status(200).json({
+            message: "Successfully Updated Game State"
+        })
+    })
+]
+
+export { createGamePost, changeGameStatePut }a
