@@ -7,7 +7,7 @@ const createGamePost = asyncHandler(async (req, res, next) => {
     const gameInstance = await db.createGamePost();
 
     jwt.sign({ id: gameInstance.id }, process.env.JWT_SECRET, function (err, token) {
-        if(err) {
+        if(err) {a
             next(err);
             return;
         }

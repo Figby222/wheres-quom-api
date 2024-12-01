@@ -10,5 +10,18 @@ async function createGamePost() {
     return game;
 }
 
+async function changeGameStatePut(id, options) {
+    const game = await pool.game.update({
+        where: {
+            id: id,
+        },
+        data: {
+            ...options
+        }
+    })
 
-export default { createGamePost };
+    return game;
+}
+
+
+export default { createGamePost, changeGameStatePut };
