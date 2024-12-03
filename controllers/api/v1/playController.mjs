@@ -21,7 +21,7 @@ const createGamePost = asyncHandler(async (req, res, next) => {
         })
     })
 })
-
+a
 const changeGameStatePut = [
     handleJWTUserAuthorization,
     asyncHandler(async (req, res, next) => {
