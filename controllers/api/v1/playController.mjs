@@ -1,7 +1,7 @@
 import asyncHandler from "express-async-handler";
 import jwt from "jsonwebtoken";
 import db from "../../../db/api/v1/playQueries.mjs";
-import { handleJWTUserAuthorization } from "./util.mjs";
+import { handleJWTUserAuthorization } from "./util.mjs";a
 import "dotenv/config";
 
 const createGamePost = asyncHandler(async (req, res, next) => {
