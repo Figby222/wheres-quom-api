@@ -1,9 +1,9 @@
-import express from "express";
-import "dotenv/config";
-import cors from "cors";
+const express = require("express");
+require("dotenv").config();
+const cors = require("cors");
 const app = express();
-import routers from "./routers/index.mjs";
-import path from "node:path";
+const routers = require("./routers/index.mjs");
+const path = require("node:path");
 const __dirname = import.meta.dirname;
 
 app.use(cors());
