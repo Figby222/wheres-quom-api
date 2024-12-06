@@ -1,4 +1,4 @@
-import pool from "../../pool.mjs";
+const pool = require("../../pool.js");
 
 async function seed() {
     const characters = await pool.character.createMany({
