@@ -5,7 +5,8 @@
   "main": "index.mjs",
   "scripts": {
     "dev": "NODE_ENV=development && node index.mjs",
-    "test": "NODE_ENV=test && jest"
+    "test": "NODE_ENV=test && jest",
+    "seed_dev": "NODE_ENV=development && node db/api/v1/dev_seed.mjs"
   },
   "repository": {
     "type": "git",
