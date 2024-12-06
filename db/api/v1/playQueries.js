@@ -1,4 +1,4 @@
-import pool from "../../pool.mjs";
+const pool = require("../../pool.js");
 
 async function createGamePost() {
     const game = await pool.game.create({
@@ -24,4 +24,4 @@ async function changeGameStatePut(id, options) {
 }
 
 
-export default { createGamePost, changeGameStatePut };
+module.exports = { createGamePost, changeGameStatePut };
