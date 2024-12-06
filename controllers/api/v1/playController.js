@@ -1,8 +1,8 @@
-import asyncHandler from "express-async-handler";
-import jwt from "jsonwebtoken";
-import db from "../../../db/api/v1/playQueries.mjs";
-import { handleJWTGameAuthorization } from "./util.mjs";
-import "dotenv/config";
+const asyncHandler = require("express-async-handler");
+const jwt = require("jsonwebtoken");
+const db = require("../../../db/api/v1/playQueries.mjs");
+const { handleJWTGameAuthorization } = require("./util.mjs");
+require("dotenv").config();
 
 const createGamePost = asyncHandler(async (req, res, next) => {
     const gameInstance = await db.createGamePost();
@@ -31,4 +31,4 @@ const changeGameStatePut = [
     })
 ]
 
-export { createGamePost, changeGameStatePut }
+module.exports = { createGamePost, changeGameStatePut }
