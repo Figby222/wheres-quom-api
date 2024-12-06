@@ -16,10 +16,6 @@ datasource db {
 model Character {
   id             Int    @id @default(autoincrement())
   name           String @unique
-  positionX      Int
-  positionY      Int
-  positionX2     Int
-  positionY2     Int
   positionTop    Int
   positionBottom Int
   positionLeft   Int
