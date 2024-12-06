@@ -21,4 +21,4 @@ function indexRouteGet(req, res) {
 
 
 
-export { indexRouteGet }
+module.exports = { indexRouteGet }
