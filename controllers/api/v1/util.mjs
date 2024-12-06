@@ -7,7 +7,7 @@ const handleJWTGameAuthorization = asyncHandler((req, res, next) => {
             next(err);
             return;
         }
-a
+
         if (!game) {
             res.status(401).json({
                 message: "Unauthorized",
@@ -21,4 +21,4 @@ a
     })(req, res, next);
 })
 
-export { handleJWTGameAuthorization };a
+export { handleJWTGameAuthorization };
