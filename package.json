@@ -4,7 +4,7 @@
   "description": "A Node.js API repository for Where's quom game (similar to where's waldo)",
   "main": "index.mjs",
   "scripts": {
-    "dev": "NODE_ENV=development && node index.mjs",
+    "dev": "NODE_ENV=development && node index.js",
     "test": "NODE_ENV=test && jest",
     "seed_dev": "NODE_ENV=development && node db/api/v1/dev_seed.js",
     "seed_test": "NODE_ENV=test && node db/api/v1/test_seed.js"
