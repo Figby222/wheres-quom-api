@@ -1,5 +1,5 @@
-import passport from "../../../config/passport.mjs";
-import asyncHandler from "express-async-handler";
+const passport = require("../../../config/passport.mjs");
+const asyncHandler = require("express-async-handler");
 
 const handleJWTGameAuthorization = asyncHandler((req, res, next) => {
     passport.authenticate("jwt", { session: false }, (err, game, info) => {
@@ -21,4 +21,4 @@ const handleJWTGameAuthorization = asyncHandler((req, res, next) => {
     })(req, res, next);
 })
 
-export { handleJWTGameAuthorization };
+module.exports = { handleJWTGameAuthorization };
