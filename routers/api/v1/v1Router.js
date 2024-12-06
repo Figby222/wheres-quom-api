@@ -1,6 +1,6 @@
 const { Router } = require("express");
-const indexController = require("../../../controllers/api/v1/indexController.mjs");
-const playRouter = require("./playRouter.mjs");
+const indexController = require("../../../controllers/api/v1/indexController.js");
+const playRouter = require("./playRouter.js");
 
 const indexRouter = Router();
 

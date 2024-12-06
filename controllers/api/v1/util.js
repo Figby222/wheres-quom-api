@@ -1,4 +1,4 @@
-const passport = require("../../../config/passport.mjs");
+const passport = require("../../../config/passport.js");
 const asyncHandler = require("express-async-handler");
 
 const handleJWTGameAuthorization = asyncHandler((req, res, next) => {

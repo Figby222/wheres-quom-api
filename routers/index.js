@@ -1,4 +1,4 @@
-const apiRouter = require("./api/apiRouter.mjs");
+const apiRouter = require("./api/apiRouter.js");
 
 module.exports = {
     apiRouter

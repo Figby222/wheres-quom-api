@@ -1,7 +1,7 @@
 const asyncHandler = require("express-async-handler");
 const jwt = require("jsonwebtoken");
-const db = require("../../../db/api/v1/playQueries.mjs");
-const { handleJWTGameAuthorization } = require("./util.mjs");
+const db = require("../../../db/api/v1/playQueries.js");
+const { handleJWTGameAuthorization } = require("./util.js");
 require("dotenv").config();
 
 const createGamePost = asyncHandler(async (req, res, next) => {

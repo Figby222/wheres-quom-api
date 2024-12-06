@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const playController = require("../../../controllers/api/v1/playController.mjs");
+const playController = require("../../../controllers/api/v1/playController.js");
 
 const playRouter = Router();
 

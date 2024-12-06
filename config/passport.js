@@ -1,6 +1,6 @@
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
-const pool = require("../db/pool.mjs");
+const pool = require("../db/pool.js");
 const bcrypt = require("bcryptjs");
 const passportJwt = require("passport-jwt");
 require("dotenv").config();
