@@ -7,7 +7,7 @@ require("dotenv").config();
 const createGamePost = asyncHandler(async (req, res, next) => {
     const gameInstance = await db.createGamePost();
 
-    jwt.sign({ id: gameInstance.id }, process.env.JWT_SECRET, function (err, token) {
+    jwt.sign({ id: gameInstance.id }, process.env.JWT_SECRET, function (err, token) {a
         if(err) {
             next(err);
             return;

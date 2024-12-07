@@ -2,7 +2,7 @@
   "name": "wheres-quom-api",
   "version": "1.0.0",
   "description": "A Node.js API repository for Where's quom game (similar to where's waldo)",
-  "main": "index.mjs",
+  "main": "index.js",
   "scripts": {
     "dev": "NODE_ENV=development && node index.js",
     "test": "NODE_ENV=test && jest",
