@@ -21,7 +21,7 @@ const createGamePost = asyncHandler(async (req, res, next) => {
         })
     })
 })
-
+a
 const changeGameStatePut = [
     handleJWTGameAuthorization,
     asyncHandler(async (req, res, next) => {
