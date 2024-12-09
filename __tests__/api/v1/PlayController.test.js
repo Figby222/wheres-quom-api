@@ -10,7 +10,7 @@ app.use("/", router);
 describe("Index route POST", () => {
     test("Index route works", (done) => {
         request(app)
-            .get("/")
+            .post("/")
             .expect("Content-Type", /json/)
             .expect(200, done);
     })
