@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "NODE_ENV=development && node index.js",
-    "test": "NODE_ENV=test && jest",
+    "test": "NODE_ENV=test && jest --detectOpenHandles",
     "seed_dev": "NODE_ENV=development && node db/api/v1/dev_seed.js",
     "seed_test": "NODE_ENV=test && node db/api/v1/test_seed.js"
   },
