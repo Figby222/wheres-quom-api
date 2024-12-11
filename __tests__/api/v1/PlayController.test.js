@@ -14,4 +14,18 @@ describe("Index route POST", () => {
             .expect("Content-Type", /json/)
             .expect(200, done);
     })
+    
+    test("It sends auth token", (done) => {
+        request(app)
+            .post("/")
+            .expect("Content-Type", /json/)
+            .expect(200)
+            .then((res) => {
+                if (!res.headers.authorization) {
+                    return done(`res.headers.authorization is undefined`);
+                }
+
+                done();
+            });
+    })
 })

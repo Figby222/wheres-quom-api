@@ -21,4 +21,4 @@ const handleJWTGameAuthorization = asyncHandler((req, res, next) => {
     })(req, res, next);
 })
 
-module.exports = { handleJWTGameAuthorization };a
+module.exports = { handleJWTGameAuthorization };
