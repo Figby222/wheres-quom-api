@@ -28,4 +28,24 @@ describe("Index route POST", () => {
                 done();
             });
     })
+
+    test("It sends different bearer token each time", (done) => {
+        const request1 = request(app)
+            .post("/")
+            .expect("Content-Type", /json/)
+            .expect(200)
+            .then(async (res1) => {
+                const request2 = await request(app)
+                    .post("/")
+                    .expect("Content-Type", /json/)
+                    .expect(200)
+                    .then((res2) => {
+                        if (res1.headers.authorization === res2.headers.authorization) {
+                            return done("res1.headers.authorization is equal to res2.headers.authorization")
+                        }
+
+                        return done();
+                    })
+            })
+    })
 })
