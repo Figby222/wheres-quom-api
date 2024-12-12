@@ -78,4 +78,18 @@ describe("Index route PUT", () => {
                     .expect(200)
             })
     })
+
+    test("Index route doesn't work without authorization", (done) => {
+        request(app)
+            .put("/")
+            .set("Content-Type", "application/json")
+            .send(`
+                {
+                            characterId: ${targetBoxCoordinatePercentages.quom.id}, 
+                            targetBoxXPercentage: ${targetBoxCoordinatePercentages.quom.xPercentage}, 
+                            targetBoxYPercentage: ${targetBoxCoordinatePercentages.quom.yPercentage}
+                }
+            `)
+            .expect(401, done);
+    })
 })
