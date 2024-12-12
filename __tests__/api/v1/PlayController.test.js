@@ -7,6 +7,14 @@ const app = express();
 app.use(express.urlencoded({ extended: false }));
 app.use("/", router);
 
+const targetBoxCoordinatePercentages = {
+    quom: {
+        id: 1,
+        xPercentage: 4,
+        yPercentage: 8
+    }
+}
+
 describe("Index route POST", () => {
     test("Index route works", (done) => {
         request(app)
@@ -46,6 +54,28 @@ describe("Index route POST", () => {
 
                         return done();
                     })
+            })
+    })
+})
+
+describe("Index route PUT", () => {
+    test("Index route works", () => {
+        request(app)
+            .post("/")
+            .expect(200)
+            .then(async (res1) => {
+                const request2 = await request(app)
+                    .put("/")
+                    .set("Authorization", res1.headers.authorization)
+                    .set("Content-Type", "application/json")
+                    .send(`
+                        { 
+                            characterId: ${targetBoxCoordinatePercentages.quom.id}, 
+                            targetBoxXPercentage: ${targetBoxCoordinatePercentages.quom.xPercentage}, 
+                            targetBoxYPercentage: ${targetBoxCoordinatePercentages.quom.yPercentage}
+                        }
+                    `)
+                    .expect(200)
             })
     })
 })
