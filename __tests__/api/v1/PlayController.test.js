@@ -59,30 +59,30 @@ describe("Index route POST", () => {
 })
 
 describe("Index route PUT", () => {
-    test("Index route works", () => {
+    test("Index route works", (done) => {
         request(app)
             .post("/")
             .expect(200)
-            .then(async (res1) => {
-                const request2 = await request(app)
+            .then((res1) => {
+                const request2 = request(app)
                     .put("/")
                     .set("Authorization", res1.headers.authorization)
-                    .set("Content-Type", "application/json")
-                    .send(`
+                    .type("form")
+                    .send(
                         { 
-                            characterId: ${targetBoxCoordinatePercentages.quom.id}, 
-                            targetBoxXPercentage: ${targetBoxCoordinatePercentages.quom.xPercentage}, 
-                            targetBoxYPercentage: ${targetBoxCoordinatePercentages.quom.yPercentage}
+                            characterId: targetBoxCoordinatePercentages.quom.id, 
+                            targetBoxXPercentage: targetBoxCoordinatePercentages.quom.xPercentage, 
+                            targetBoxYPercentage: targetBoxCoordinatePercentages.quom.yPercentage
                         }
-                    `)
-                    .expect(200)
+                    )
+                    .expect(200, done)
             })
     })
 
     test("Index route doesn't work without authorization", (done) => {
         request(app)
             .put("/")
-            .set("Content-Type", "application/json")
+            .type("form")
             .send(`
                 {
                             characterId: ${targetBoxCoordinatePercentages.quom.id}, 
