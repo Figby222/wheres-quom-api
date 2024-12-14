@@ -4,7 +4,6 @@ const cors = require("cors");
 const app = express();
 const routers = require("./routers/index.js");
 const path = require("node:path");
-const __dirname = import.meta.dirname;
 
 app.use(cors());
 app.use(express.json());
