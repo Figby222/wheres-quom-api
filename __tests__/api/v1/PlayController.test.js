@@ -92,4 +92,18 @@ describe("Index route PUT", () => {
             `)
             .expect(401, done);
     })
+
+    test("Index route sends 400 status when JSON data is missing", async () => {
+        const res1 = await request(app)
+            .post("/")
+            .expect("Content-Type", /json/)
+            .expect(200);
+        
+        const res2 = await request(app)
+            .put("/")
+            .type("form")
+            .set("Authorization", res1.headers.authorization)
+            .send(``)
+            .expect(400)
+    })
 })

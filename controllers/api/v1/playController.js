@@ -21,7 +21,7 @@ const createGamePost = asyncHandler(async (req, res, next) => {
         res.json({
             imageSrc: imageSrc,
             token: token
-        })
+        })a
     })(req, res, next);
 })
 
