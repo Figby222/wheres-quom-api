@@ -28,6 +28,18 @@ const createGamePost = asyncHandler(async (req, res, next) => {
 const changeGameStatePut = [
     handleJWTGameAuthorization,
     asyncHandler(async (req, res, next) => {
+        if (Object.values(req.body).length <= 0) {
+            return res.status(400).json({
+                message: "Request must include JSON data"
+            })
+        }
+
+        if (Object.values(req.body).length <= 0) {
+            return res.status(400).json({
+                message: "Request must include JSON data"
+            })
+        }
+
         res.status(200).json({
             message: "Successfully Updated Game State"
         })
