@@ -21,4 +21,4 @@ a
     })(req, res, next);
 })
 
-module.exports = { handleJWTGameAuthorization };
+module.exports = { handleJWTGameAuthorization };a

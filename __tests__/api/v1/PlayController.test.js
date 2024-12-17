@@ -106,4 +106,58 @@ describe("Index route PUT", () => {
             .send(``)
             .expect(400)
     })
+
+    test("Index route sends 400 status when JSON data is incomplete", async () => {
+        const res1 = await request(app)
+            .post("/")
+            .expect("Content-Type", /json/)
+            .expect(200);
+        
+        const res2 = await request(app)
+            .put("/")
+            .type("form")
+            .set("Authorization", res1.headers.authorization)
+            .send(
+                { 
+                    targetBoxXPercentage: targetBoxCoordinatePercentages.quom.xPercentage, 
+                    targetBoxYPercentage: targetBoxCoordinatePercentages.quom.yPercentage
+                }
+            )
+            .expect(400)
+        
+            const res3 = await request(app)
+            .post("/")
+            .expect("Content-Type", /json/)
+            .expect(200);
+        
+            const res4 = await request(app)
+                .put("/")
+                .type("form")
+                .set("Authorization", res3.headers.authorization)
+                .send(
+                    { 
+                        characterId: targetBoxCoordinatePercentages.quom.id,
+                        targetBoxXPercentage: targetBoxCoordinatePercentages.quom.xPercentage
+                    }
+                )
+                .expect(400)
+
+            const res5 = await request(app)
+                .post("/")
+                .expect("Content-Type", /json/)
+                .expect(200);
+        
+            const res6 = await request(app)
+                .put("/")
+                .type("form")
+                .set("Authorization", res3.headers.authorization)
+                .send(
+                    { 
+                        characterId: targetBoxCoordinatePercentages.quom.id, 
+                        targetBoxXPercentage: targetBoxCoordinatePercentages.quom.xPercentage 
+                    }
+                )
+                .expect(400)
+    })
 })
+
