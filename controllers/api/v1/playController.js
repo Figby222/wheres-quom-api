@@ -1,8 +1,21 @@
 const asyncHandler = require("express-async-handler");
 const jwt = require("jsonwebtoken");
 const db = require("../../../db/api/v1/playQueries.js");
-const { handleJWTGameAuthorization } = require("./util.js");a
+const { handleJWTGameAuthorization } = require("./util.js");
 require("dotenv").config();
+const { body, validationResult } = require("express-validator");
+
+const changeGameStatePutValidator = [
+    body("characterId")
+        .toInt()
+        .notEmpty(),
+    body("targetBoxXPercentage")
+        .toInt()
+        .notEmpty(),
+    body("targetBoxYPercentage")
+        .toInt()
+        .notEmpty()
+]
 
 const createGamePost = asyncHandler(async (req, res, next) => {
     const gameInstance = await db.createGamePost();
@@ -27,16 +40,17 @@ const createGamePost = asyncHandler(async (req, res, next) => {
 
 const changeGameStatePut = [
     handleJWTGameAuthorization,
+    changeGameStatePutValidator,
     asyncHandler(async (req, res, next) => {
-        if (Object.values(req.body).length <= 0) {
-            return res.status(400).json({
-                message: "Request must include JSON data"
-            })
-        }
+        const errorsResult = validationResult(req);
 
-        if (Object.values(req.body).length <= 0) {
+        if(!errorsResult.isEmpty()) {
             return res.status(400).json({
-                message: "Request must include JSON data"
+                success: false,
+                errors: {
+                    ...errorsResult.errors
+                }
+
             })
         }
 
