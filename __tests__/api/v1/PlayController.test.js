@@ -159,5 +159,32 @@ describe("Index route PUT", () => {
                 )
                 .expect(400)
     })
+
+    test("Index route returns success message when user correctly targets a character", async () => {
+        const res1 = await request(app)
+            .post("/")
+            .expect("Content-Type", /json/)
+            .expect(200);
+        
+        const res2 = await request(app)
+            .put("/")
+            .type("form")
+            .set("Authorization", res1.headers.authorization)
+            .send(
+                {
+                    characterId: targetBoxCoordinatePercentages.quom.id, 
+                    targetBoxXPercentage: targetBoxCoordinatePercentages.quom.xPercentage, 
+                    targetBoxYPercentage: targetBoxCoordinatePercentages.quom.yPercentage
+                }
+            )
+            .expect(200)
+
+            expect(res2.body.success).toEqual(true)
+            expect(res2.body.character.id).toEqual(1)
+            expect(res2.body.character.positionLeft).toEqual(4)
+            expect(res2.body.character.positionTop).toEqual(8)
+            expect(res2.body.character.positionRight).toEqual(8)
+            expect(res2.body.character.positionBottom).toEqual(14)
+    })
 })
 
