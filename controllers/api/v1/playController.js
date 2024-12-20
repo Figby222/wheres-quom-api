@@ -55,7 +55,15 @@ const changeGameStatePut = [
         }
 
         res.status(200).json({
-            message: "Successfully Updated Game State"
+            message: "Successfully Updated Game State",
+            success: true,
+            character: {
+                id: 1,
+                positionLeft: 4,
+                positionTop: 8,
+                positionRight: 8,
+                positionBottom: 14
+            }
         })
     })
 ]
