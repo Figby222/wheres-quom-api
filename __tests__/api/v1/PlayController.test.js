@@ -12,6 +12,16 @@ const targetBoxCoordinatePercentages = {
         id: 1,
         xPercentage: 4,
         yPercentage: 8
+    },
+    comal: {
+        id: 2,
+        xPercentage: 64,
+        yPercentage: 88
+    },
+    figby: {
+        id: 3,
+        xPercentage: 86,
+        yPercentage: 46
     }
 }
 
@@ -185,6 +195,33 @@ describe("Index route PUT", () => {
             expect(res2.body.character.positionTop).toEqual(8)
             expect(res2.body.character.positionRight).toEqual(8)
             expect(res2.body.character.positionBottom).toEqual(14)
+    })
+
+    test("Index route returns success message when user targets a different character", async () => {
+        const res1 = await request(app)
+            .post("/")
+            .expect("Content-Type", /json/)
+            .expect(200)
+
+        const res2 = await request(app)
+            .put("/")
+            .type("form")
+            .set("Authorization", res1.headers.authorization)
+            .send(
+                {
+                    characterId: targetBoxCoordinatePercentages.comal.id, 
+                    targetBoxXPercentage: targetBoxCoordinatePercentages.comal.xPercentage, 
+                    targetBoxYPercentage: targetBoxCoordinatePercentages.comal.yPercentage
+                }
+            )
+            .expect(200)
+        
+        expect(res2.body.success).toEqual(true)
+        expect(res2.body.character.id).toEqual(2)
+        expect(res2.body.character.positionLeft).toEqual(64)
+        expect(res2.body.character.positionTop).toEqual(88)
+        expect(res2.body.character.positionRight).toEqual(68)
+        expect(res2.body.character.positionBottom).toEqual(94)
     })
 })
 
