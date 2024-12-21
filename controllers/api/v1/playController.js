@@ -20,7 +20,7 @@ const changeGameStatePutValidator = [
 const createGamePost = asyncHandler(async (req, res, next) => {
     const gameInstance = await db.createGamePost();
 
-    jwt.sign({ id: gameInstance.id }, process.env.JWT_SECRET, function (err, token) {a
+    jwt.sign({ id: gameInstance.id }, process.env.JWT_SECRET, function (err, token) {
         if(err) {
             next(err);
             return;
@@ -34,7 +34,7 @@ const createGamePost = asyncHandler(async (req, res, next) => {
         res.json({
             imageSrc: imageSrc,
             token: token
-        })a
+        })
     })(req, res, next);
 })
 
@@ -54,17 +54,31 @@ const changeGameStatePut = [
             })
         }
 
-        res.status(200).json({
-            message: "Successfully Updated Game State",
-            success: true,
+        if (req.body.characterId === 1) {
+            return res.status(200).json({
+                message: "Successfully Updated Game State",
+                success: true,
+                character: {
+                    id: 1,
+                    positionLeft: 4,
+                    positionTop: 8,
+                    positionRight: 8,
+                    positionBottom: 14
+                }
+            })
+        }
+
+        return res.status(200).json({
+            success:true,
             character: {
-                id: 1,
-                positionLeft: 4,
-                positionTop: 8,
-                positionRight: 8,
-                positionBottom: 14
+                id: 2,
+                positionLeft: 64,
+                positionTop: 88,
+                positionRight: 68,
+                positionBottom: 94
             }
         })
+
     })
 ]
 

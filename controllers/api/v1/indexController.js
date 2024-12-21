@@ -1,13 +1,12 @@
 function indexRouteGet(req, res) {
     res.json({
         message: "Hi",
-    })a
+    })
 }
 
 
 
 
-a
 
 
 
@@ -21,4 +20,5 @@ a
 
 
 
-module.exports = { indexRouteGet }a
+
+module.exports = { indexRouteGet }

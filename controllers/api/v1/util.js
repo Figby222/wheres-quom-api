@@ -1,13 +1,13 @@
 const passport = require("../../../config/passport.js");
 const asyncHandler = require("express-async-handler");
 
-const handleJWTGameAuthorization = asyncHandler((req, res, next) => {a
+const handleJWTGameAuthorization = asyncHandler((req, res, next) => {
     passport.authenticate("jwt", { session: false }, (err, game, info) => {
         if (err) {
             next(err);
             return;
         }
-a
+
         if (!game) {
             res.status(401).json({
                 message: "Unauthorized",
@@ -21,4 +21,4 @@ a
     })(req, res, next);
 })
 
-module.exports = { handleJWTGameAuthorization };a
+module.exports = { handleJWTGameAuthorization };
