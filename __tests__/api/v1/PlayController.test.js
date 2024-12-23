@@ -230,5 +230,9 @@ describe("targetBoxCharacterCollision", () => {
     test("It exists", () => {
         expect(targetBoxCharacterCollision).toBeDefined();
     })
+
+    test("It is a function", () => {
+        expect(typeof targetBoxCharacterCollision).toBe("function");
+    })
 })
 
