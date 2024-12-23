@@ -1,4 +1,5 @@
 const router = require("../../../routers/api/v1/playRouter.js");
+const { targetBoxCharacterCollision } = require("../../../controllers/api/v1/util.js");
 
 const request = require("supertest");
 const express = require("express");
@@ -222,6 +223,12 @@ describe("Index route PUT", () => {
         expect(res2.body.character.positionTop).toEqual(88)
         expect(res2.body.character.positionRight).toEqual(68)
         expect(res2.body.character.positionBottom).toEqual(94)
+    })
+})
+
+describe("targetBoxCharacterCollision", () => {
+    test("It exists", () => {
+        expect(targetBoxCharacterCollision).toBeDefined();
     })
 })
 
