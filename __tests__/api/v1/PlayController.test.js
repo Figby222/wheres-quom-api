@@ -234,5 +234,22 @@ describe("targetBoxCharacterCollision", () => {
     test("It is a function", () => {
         expect(typeof targetBoxCharacterCollision).toBe("function");
     })
+
+    test("It returns true when targeting character", () => {
+        const targetBoxXPercentage = 4;
+        const targetBoxYPercentage = 14;
+        const characterCoordinatePercentages = {
+            top: 14,
+            bottom: 19,
+            left: 4,
+            right: 8
+        };
+
+        expect(targetBoxCharacterCollision(
+            targetBoxXPercentage, 
+            targetBoxYPercentage,
+            characterCoordinatePercentages
+        )).toEqual(true);
+    })
 })
 
