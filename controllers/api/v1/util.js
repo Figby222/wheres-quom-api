@@ -21,6 +21,8 @@ const handleJWTGameAuthorization = asyncHandler((req, res, next) => {
     })(req, res, next);
 })
 
-const targetBoxCharacterCollision = () => {};
+const targetBoxCharacterCollision = () => {
+    return true;
+};
 
 module.exports = { handleJWTGameAuthorization, targetBoxCharacterCollision };
