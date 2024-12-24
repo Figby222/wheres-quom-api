@@ -251,5 +251,22 @@ describe("targetBoxCharacterCollision", () => {
             characterCoordinatePercentages
         )).toEqual(true);
     })
+
+    test("It returns false when incorrectly targeting a character", () => {
+        const targetBoxXPercentage = 33;
+        const targetBoxYPercentage = 32;
+        const characterCoordinatePercentages = {
+            top: 14,
+            bottom: 19,
+            left: 4,
+            right: 8
+        };
+
+        expect(targetBoxCharacterCollision(
+            targetBoxXPercentage,
+            targetBoxYPercentage,
+            characterCoordinatePercentages
+        )).toEqual(false);
+    })
 })
 
