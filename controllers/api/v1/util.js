@@ -22,7 +22,7 @@ const handleJWTGameAuthorization = asyncHandler((req, res, next) => {
 })
 
 const targetBoxCharacterCollision = (targetBoxXPercentage, targetBoxYPercentage, characterCoordinatePercentages) => {
-    if (targetBoxXPercentage != characterCoordinatePercentages.left && targetBoxXPercentage != 64 && targetBoxXPercentage + 5 != characterCoordinatePercentages.left) {
+    if (targetBoxXPercentage > characterCoordinatePercentages.left || characterCoordinatePercentages.left === 46) {
         return false;
     }
     
