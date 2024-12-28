@@ -319,5 +319,22 @@ describe("targetBoxCharacterCollision", () => {
             characterCoordinatePercentages
         )).toEqual(true);
     })
+
+    test("It returns true when X is 5 pixel percentages away from character", () => {
+        const targetBoxXPercentage = 28;
+        const targetBoxYPercentage = 32;
+        const characterCoordinatePercentages = {
+            top: 33,
+            bottom: 38,
+            left: targetBoxXPercentage + 5,
+            right: 37
+        }
+
+        expect(targetBoxCharacterCollision(
+            targetBoxXPercentage,
+            targetBoxYPercentage,
+            characterCoordinatePercentages
+        )).toBe(true);
+    })
 })
 
