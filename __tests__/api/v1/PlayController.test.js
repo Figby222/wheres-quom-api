@@ -387,5 +387,22 @@ describe("targetBoxCharacterCollision", () => {
             characterCoordinatePercentages
         )).toBe(true);
     })
+
+    test("It returns false when X is 12 pixel percentages away from character", () => {
+        const targetBoxXPercentage = 22;
+        const targetBoxYPercentage = 32;
+        const characterCoordinatePercentages = {
+            top: 33,
+            bottom: 38,
+            left: targetBoxXPercentage + 12,
+            right: 37 
+        }
+
+        expect(targetBoxCharacterCollision(
+            targetBoxXPercentage,
+            targetBoxYPercentage,
+            characterCoordinatePercentages
+        )).toBe(false);
+    })
 })
 
