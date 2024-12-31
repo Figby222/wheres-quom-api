@@ -438,5 +438,22 @@ describe("targetBoxCharacterCollision", () => {
             characterCoordinatePercentages
         )).toBe(true);
     })
+
+    test("It returns true if targetBox is partially covering a wider character horizontally", () => {
+        const targetBoxXPercentage = 34;
+        const targetBoxYPercentage = 32;
+        const characterCoordinatePercentages = {
+            top: 33,
+            bottom: 38,
+            left: targetBoxXPercentage - 6,
+            right: targetBoxXPercentage + 4
+        }
+
+        expect(targetBoxCharacterCollision(
+            targetBoxXPercentage,
+            targetBoxYPercentage,
+            characterCoordinatePercentages
+        )).toBe(true);
+    })
 })
 
