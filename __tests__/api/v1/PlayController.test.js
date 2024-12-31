@@ -474,5 +474,22 @@ describe("targetBoxCharacterCollision", () => {
             characterCoordinatePercentages
         )).toBe(false);
     })
+
+    test("It returns false if targetBox X is correct and Y is 12 pixels down", () => {
+        const targetBoxXPercentage = 34;
+        const targetBoxYPercentage = 30;
+        const characterCoordinatePercentages = {
+            top: targetBoxYPercentage + 12,
+            bottom: 53,
+            left: targetBoxXPercentage,
+            right: targetBoxXPercentage + 4
+        }
+
+        expect(targetBoxCharacterCollision(
+            targetBoxXPercentage,
+            targetBoxYPercentage,
+            characterCoordinatePercentages
+        )).toBe(false);
+    })
 })
 
