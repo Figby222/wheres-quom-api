@@ -542,5 +542,22 @@ describe("targetBoxCharacterCollision", () => {
             characterCoordinatePercentages
         )).toBe(false);
     })
+
+    test("It returns false when character is above targetBox when targetBox has a different Y Coordinate", () => {
+        const targetBoxXPercentage = 34;
+        const targetBoxYPercentage = 24;
+        const characterCoordinatePercentages = {
+            top: targetBoxYPercentage - 15,
+            bottom: 19,
+            left: targetBoxXPercentage,
+            right: targetBoxXPercentage + 4
+        }
+
+        expect(targetBoxCharacterCollision(
+            targetBoxXPercentage,
+            targetBoxYPercentage,
+            characterCoordinatePercentages
+        )).toBe(false);
+    })
 })
 
