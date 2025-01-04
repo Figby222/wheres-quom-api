@@ -576,5 +576,22 @@ describe("targetBoxCharacterCollision", () => {
             characterCoordinatePercentages
         )).toBe(false);
     })
+
+    test("It returns true when a taller character is partially covered vertically", () => {
+        const targetBoxXPercentage = 34;
+        const targetBoxYPercentage = 24;
+        const characterCoordinatePercentages = {
+            top: targetBoxYPercentage - 14,
+            bottom: 30,
+            left: targetBoxXPercentage,
+            right: targetBoxXPercentage + 4
+        }
+
+        expect(targetBoxCharacterCollision(
+            targetBoxXPercentage,
+            targetBoxYPercentage,
+            characterCoordinatePercentages
+        )).toBe(true);
+    })
 })
 
