@@ -23,5 +23,15 @@ async function changeGameStatePut(id, options) {
     return game;
 }
 
+async function getCharacterDetails(id) {
+    const character = await pool.character.findUnique({
+        where: {
+            id: id
+        }
+    });
 
-module.exports = { createGamePost, changeGameStatePut };
+    return character;
+}
+
+
+module.exports = { createGamePost, changeGameStatePut, getCharacterDetails };
