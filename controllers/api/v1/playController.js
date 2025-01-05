@@ -54,28 +54,17 @@ const changeGameStatePut = [
             })
         }
 
-        if (req.body.characterId === 1) {
-            return res.status(200).json({
-                message: "Successfully Updated Game State",
-                success: true,
-                character: {
-                    id: 1,
-                    positionLeft: 4,
-                    positionTop: 8,
-                    positionRight: 8,
-                    positionBottom: 14
-                }
-            })
-        }
+        
+        const character = await db.getCharacterDetails(parseInt(req.body.characterId));
 
         return res.status(200).json({
             success:true,
             character: {
-                id: 2,
-                positionLeft: 64,
-                positionTop: 88,
-                positionRight: 68,
-                positionBottom: 94
+                id: character.id,
+                positionLeft: character.positionLeft,
+                positionTop: character.positionTop,
+                positionRight: character.positionRight,
+                positionBottom: character.positionBottom
             }
         })
 
