@@ -27,8 +27,17 @@ async function getCharacterDetails(id) {
     const character = await pool.character.findUnique({
         where: {
             id: id
+        },
+        select: {
+            id: true,
+            name: true,
+            positionTop: true,
+            positionLeft: true,
+            positionRight: true,
+            positionBottom: true,
         }
     });
+    
 
     return character;
 }
