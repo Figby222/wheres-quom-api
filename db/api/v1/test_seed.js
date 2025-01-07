@@ -7,6 +7,7 @@ async function seed() {
         data: [
             {
                 name: "quom",
+                id: 1,
                 positionLeft: 4,
                 positionTop: 8,
                 positionRight: 8,
@@ -14,6 +15,7 @@ async function seed() {
             },
             {
                 name: "Comal",
+                id: 2,
                 positionLeft: 64,
                 positionTop: 88,
                 positionRight: 68,
@@ -21,6 +23,7 @@ async function seed() {
             },
             {
                 name: "Figby",
+                id: 3,
                 positionLeft: 86,
                 positionTop: 46,
                 positionRight: 90,
