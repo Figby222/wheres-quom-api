@@ -59,6 +59,19 @@ async function addFoundCharacterToGame(gameId, characterId) {
     return game;
 }
 
+async function getGameDetails(gameId) {
+    const game = await pool.game.findUnique({
+        where: {
+            id: gameId
+        },
+        include: {
+            charactersFound: true
+        }
+    })
+
+    return game;
+}
 
 
-module.exports = { createGamePost, changeGameStatePut, getCharacterDetails, addFoundCharacterToGame };
+
+module.exports = { createGamePost, changeGameStatePut, getCharacterDetails, addFoundCharacterToGame, getGameDetails };
