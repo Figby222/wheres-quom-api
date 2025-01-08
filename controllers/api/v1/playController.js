@@ -57,14 +57,14 @@ const changeGameStatePut = [
         
         const character = await db.getCharacterDetails(parseInt(req.body.characterId));
 
+        const addFoundCharacterToGame = await db.addFoundCharacterToGame(req.game.id, req.body.characterId);
+
+        const gameDetails = await db.getGameDetails(req.game.id);
+
         return res.status(200).json({
             success:true,
-            character: {
-                id: character.id,
-                positionLeft: character.positionLeft,
-                positionTop: character.positionTop,
-                positionRight: character.positionRight,
-                positionBottom: character.positionBottom
+            characters: {
+                ...gameDetails.charactersFound
             }
         })
 
