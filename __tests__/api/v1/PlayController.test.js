@@ -5,6 +5,8 @@ const request = require("supertest");
 const express = require("express");
 const app = express();
 
+const db = require("../../../db/api/v1/playQueries.js");
+
 app.use(express.urlencoded({ extended: false }));
 app.use("/", router);
 
@@ -191,11 +193,11 @@ describe("Index route PUT", () => {
             .expect(200)
 
             expect(res2.body.success).toEqual(true)
-            expect(res2.body.character.id).toEqual(1)
-            expect(res2.body.character.positionLeft).toEqual(4)
-            expect(res2.body.character.positionTop).toEqual(8)
-            expect(res2.body.character.positionRight).toEqual(8)
-            expect(res2.body.character.positionBottom).toEqual(14)
+            expect(res2.body.characters[0].id).toEqual(1)
+            expect(res2.body.characters[0].positionLeft).toEqual(4)
+            expect(res2.body.characters[0].positionTop).toEqual(8)
+            expect(res2.body.characters[0].positionRight).toEqual(8)
+            expect(res2.body.characters[0].positionBottom).toEqual(14)
     })
 
     test("Index route returns success message when user targets a different character", async () => {
@@ -218,11 +220,11 @@ describe("Index route PUT", () => {
             .expect(200)
         
         expect(res2.body.success).toEqual(true)
-        expect(res2.body.character.id).toEqual(2)
-        expect(res2.body.character.positionLeft).toEqual(64)
-        expect(res2.body.character.positionTop).toEqual(88)
-        expect(res2.body.character.positionRight).toEqual(68)
-        expect(res2.body.character.positionBottom).toEqual(94)
+        expect(res2.body.characters[0].id).toEqual(2)
+        expect(res2.body.characters[0].positionLeft).toEqual(64)
+        expect(res2.body.characters[0].positionTop).toEqual(88)
+        expect(res2.body.characters[0].positionRight).toEqual(68)
+        expect(res2.body.characters[0].positionBottom).toEqual(94)
     })
 })
 
@@ -592,6 +594,58 @@ describe("targetBoxCharacterCollision", () => {
             targetBoxYPercentage,
             characterCoordinatePercentages
         )).toBe(true);
+    })
+})
+
+describe("database operations changeGameStatePut", () => {
+    test("It sets the character as found within the users game when character correctly selected", async () => {
+        const res1 = await request(app)
+            .post("/")
+            .expect("Content-Type", /json/)
+            .expect(200);
+        
+        const res2 = await request(app)
+            .put("/")
+            .type("form")
+            .set("Authorization", res1.headers.authorization)
+            .send(
+                {
+                    characterId: targetBoxCoordinatePercentages.quom.id, 
+                    targetBoxXPercentage: targetBoxCoordinatePercentages.quom.xPercentage, 
+                    targetBoxYPercentage: targetBoxCoordinatePercentages.quom.yPercentage
+                }
+            )
+            .expect(200)
+
+        const res3 = await request(app)
+            .put("/")
+            .type("form")
+            .set("Authorization", res1.headers.authorization)
+            .send({
+                characterId: targetBoxCoordinatePercentages.comal.id,
+                targetBoxXPercentage: targetBoxCoordinatePercentages.comal.xPercentage,
+                targetBoxYPercentage: targetBoxCoordinatePercentages.comal.yPercentage
+            })
+
+        expect(res3.body.success).toEqual(true);
+
+        expect(res3.body.characters[0]).toEqual({
+            id: 1,
+            name: "quom",
+            positionTop: 8,
+            positionLeft: 4,
+            positionRight: 8,
+            positionBottom: 14
+        });
+
+        expect(res3.body.characters[1]).toEqual({
+            id: 2,
+            name: "Comal",
+            positionTop: 88,
+            positionLeft: 64,
+            positionRight: 68,
+            positionBottom: 94
+        })
     })
 })
 
