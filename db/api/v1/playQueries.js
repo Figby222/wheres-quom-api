@@ -42,5 +42,23 @@ async function getCharacterDetails(id) {
     return character;
 }
 
+async function addFoundCharacterToGame(gameId, characterId) {
+    const game = await pool.game.update({
+        where: {
+            id: gameId,
+        },
+        data: {
+            charactersFound:{
+                connect: {
+                    id: characterId
+                }
+            }
+        }
+    })
 
-module.exports = { createGamePost, changeGameStatePut, getCharacterDetails };
+    return game;
+}
+
+
+
+module.exports = { createGamePost, changeGameStatePut, getCharacterDetails, addFoundCharacterToGame };
