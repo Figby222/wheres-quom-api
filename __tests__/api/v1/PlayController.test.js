@@ -1,5 +1,7 @@
 const router = require("../../../routers/api/v1/playRouter.js");
-const { targetBoxCharacterCollision } = require("../../../controllers/api/v1/util.js");
+const controllerUtils = require("../../../controllers/api/v1/util.js");
+
+const { targetBoxCharacterCollision } = controllerUtils;
 
 const request = require("supertest");
 const express = require("express");
@@ -646,6 +648,41 @@ describe("database operations changeGameStatePut", () => {
             positionRight: 68,
             positionBottom: 94
         })
+    })
+    
+    test("It calls targetBoxCharacterCollision()", async () => {
+        const spy = jest.spyOn(controllerUtils, "targetBoxCharacterCollision");
+
+        const res1 = await request(app)
+            .post("/")
+            .expect("Content-Type", /json/)
+            .expect(200);
+        
+        const res2 = await request(app)
+            .put("/")
+            .type("form")
+            .set("Authorization", res1.headers.authorization)
+            .send(
+                {
+                    characterId: targetBoxCoordinatePercentages.quom.id, 
+                    targetBoxXPercentage: targetBoxCoordinatePercentages.quom.xPercentage, 
+                    targetBoxYPercentage: targetBoxCoordinatePercentages.quom.yPercentage
+                }
+            )
+            .expect(200)
+
+        expect(spy).toHaveBeenCalledWith(
+            targetBoxCoordinatePercentages.quom.xPercentage,
+            targetBoxCoordinatePercentages.quom.yPercentage,
+            {
+                top: 8,
+                left: 4,
+                right: 8,
+                bottom: 14
+            }
+        )
+
+        spy.mockRestore();
     })
 })
 
