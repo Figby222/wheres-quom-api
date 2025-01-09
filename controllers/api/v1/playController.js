@@ -1,7 +1,7 @@
 const asyncHandler = require("express-async-handler");
 const jwt = require("jsonwebtoken");
 const db = require("../../../db/api/v1/playQueries.js");
-const { handleJWTGameAuthorization } = require("./util.js");
+const utils = require("./util.js");
 require("dotenv").config();
 const { body, validationResult } = require("express-validator");
 
@@ -39,7 +39,7 @@ const createGamePost = asyncHandler(async (req, res, next) => {
 })
 
 const changeGameStatePut = [
-    handleJWTGameAuthorization,
+    utils.handleJWTGameAuthorization,
     changeGameStatePutValidator,
     asyncHandler(async (req, res, next) => {
         const errorsResult = validationResult(req);
