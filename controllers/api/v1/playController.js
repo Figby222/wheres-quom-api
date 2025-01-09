@@ -59,6 +59,8 @@ const changeGameStatePut = [
 
         const addFoundCharacterToGame = await db.addFoundCharacterToGame(req.game.id, req.body.characterId);
 
+        utils.targetBoxCharacterCollision(4, 8, { top: 8, left: 4, right: 8, bottom: 14 });
+
         const gameDetails = await db.getGameDetails(req.game.id);
 
         return res.status(200).json({
