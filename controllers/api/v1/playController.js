@@ -59,13 +59,16 @@ const changeGameStatePut = [
 
         const addFoundCharacterToGame = await db.addFoundCharacterToGame(req.game.id, req.body.characterId);
 
-        if (req.body.characterId === 1) {
-            utils.targetBoxCharacterCollision(4, 8, { top: 8, left: 4, right: 8, bottom: 14 });
-            
-        } else {
-            utils.targetBoxCharacterCollision(64, 88, { top: 88, left: 64, right: 68, bottom: 94 });
-
-        }
+        utils.targetBoxCharacterCollision(
+            req.body.targetBoxXPercentage,
+            req.body.targetBoxYPercentage,
+            {
+                top: character.positionTop,
+                left: character.positionLeft,
+                right: character.positionRight,
+                bottom: character.positionBottom
+            }
+        )
 
 
 
