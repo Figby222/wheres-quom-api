@@ -684,5 +684,51 @@ describe("database operations changeGameStatePut", () => {
 
         spy.mockRestore();
     })
+
+    test("It calls targetBoxCharacterCollision() with different args", async () => {
+        const spy = jest.spyOn(controllerUtils, "targetBoxCharacterCollision");
+
+        const res1 = await request(app)
+            .post("/")
+            .expect("Content-Type", /json/)
+            .expect(200);
+        
+        const res2 = await request(app)
+            .put("/")
+            .type("form")
+            .set("Authorization", res1.headers.authorization)
+            .send(
+                {
+                    characterId: targetBoxCoordinatePercentages.comal.id, 
+                    targetBoxXPercentage: targetBoxCoordinatePercentages.comal.xPercentage, 
+                    targetBoxYPercentage: targetBoxCoordinatePercentages.comal.yPercentage
+                }
+            )
+            .expect(200)
+
+            expect(spy).not.toHaveBeenCalledWith(
+                targetBoxCoordinatePercentages.quom.xPercentage,
+                targetBoxCoordinatePercentages.quom.yPercentage,
+                {
+                    top: 8,
+                    left: 4,
+                    right: 8,
+                    bottom: 14
+                }
+            )
+
+            expect(spy).toHaveBeenCalledWith(
+                targetBoxCoordinatePercentages.comal.xPercentage,
+                targetBoxCoordinatePercentages.comal.yPercentage,
+                {
+                    top: 88,
+                    left: 64,
+                    right: 68,
+                    bottom: 94
+                }
+            )
+
+            spy.mockRestore();
+    })
 })
 
