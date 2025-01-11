@@ -787,5 +787,33 @@ describe("database operations changeGameStatePut", () => {
 
         spy.mockRestore();
     })
+    
+    test("It contains result of targetBoxCharacterCollision() in response", async () => {
+        const spy = jest.spyOn(controllerUtils, "targetBoxCharacterCollision").mockImplementation(() => {
+            return false
+        })
+
+        const res1 = await request(app)
+            .post("/")
+            .expect("Content-Type", /json/)
+            .expect(200);
+        
+        const res2 = await request(app)
+            .put("/")
+            .type("form")
+            .set("Authorization", res1.headers.authorization)
+            .send(
+                {
+                    characterId: targetBoxCoordinatePercentages.comal.id, 
+                    targetBoxXPercentage: targetBoxCoordinatePercentages.quom.xPercentage, 
+                    targetBoxYPercentage: targetBoxCoordinatePercentages.quom.yPercentage
+                }
+            )
+            .expect(200)
+        
+        expect(res2.body.success).toBe(false);
+
+        spy.mockRestore();
+    })
 })
 
