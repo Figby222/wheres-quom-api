@@ -59,7 +59,7 @@ const changeGameStatePut = [
 
         const addFoundCharacterToGame = await db.addFoundCharacterToGame(req.game.id, req.body.characterId);
 
-        utils.targetBoxCharacterCollision(
+        const success = utils.targetBoxCharacterCollision(
             req.body.targetBoxXPercentage,
             req.body.targetBoxYPercentage,
             {
@@ -75,7 +75,7 @@ const changeGameStatePut = [
         const gameDetails = await db.getGameDetails(req.game.id);
 
         return res.status(200).json({
-            success:true,
+            success:success,
             characters: {
                 ...gameDetails.charactersFound
             }
