@@ -817,3 +817,24 @@ describe("database operations changeGameStatePut", () => {
     })
 })
 
+describe("Input validation", () => {
+    test("TargetBox coordinates have a maximum of 100", async () => {
+        const res1 = await request(app)
+            .post("/")
+            .expect("Content-Type", /json/)
+            .expect(200);
+        
+        const res2 = await request(app)
+            .put("/")
+            .type("form")
+            .set("Authorization", res1.headers.authorization)
+            .send(
+                {
+                    characterId: targetBoxCoordinatePercentages.quom.id,
+                    targetBoxXPercentage: 101,
+                    targetBoxYPercentage: targetBoxCoordinatePercentages.quom.yPercentage
+                }
+            )
+            .expect(400)
+    })
+})
