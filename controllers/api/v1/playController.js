@@ -11,7 +11,8 @@ const changeGameStatePutValidator = [
         .notEmpty(),
     body("targetBoxXPercentage")
         .toInt()
-        .notEmpty(),
+        .notEmpty()
+        .isInt({ max: 100 }),
     body("targetBoxYPercentage")
         .toInt()
         .notEmpty()
