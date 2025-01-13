@@ -642,6 +642,51 @@ describe("targetBoxCharacterCollision", () => {
 
         spy.mockRestore();
     })
+
+    test("It works when targetBox Y coordinate percentage is a floating point number", async () => {
+        const spy = jest.spyOn(controllerUtils, "targetBoxCharacterCollision");
+
+        const targetBoxXPercentage = 76;
+        const targetBoxYPercentage = 46.4;
+        const res1 = await request(app)
+            .post("/")
+            .expect("Content-Type", /json/)
+            .expect(200)
+        
+        const res2 = await request(app)
+            .put("/")
+            .type("form")
+            .set("Authorization", res1.headers.authorization)
+            .send({
+                characterId: targetBoxCoordinatePercentages.figby.id,
+                targetBoxXPercentage: targetBoxXPercentage,
+                targetBoxYPercentage: targetBoxYPercentage
+            })
+            .expect(200)
+
+        expect(res2.body.success).toEqual(true);
+        expect(res2.body.characters[0]).toEqual({
+            name: "Figby",
+            id: 3,
+            positionTop: 46,
+            positionLeft: 86,
+            positionRight: 90,
+            positionBottom: 53
+        });
+
+        expect(spy).toHaveBeenCalledWith(
+            targetBoxXPercentage,
+            targetBoxYPercentage,
+            {
+                top: 46,
+                left: 86,
+                right: 90,
+                bottom: 53
+            }
+        )
+
+        spy.mockRestore();
+    })
 })
 
 describe("database operations changeGameStatePut", () => {
