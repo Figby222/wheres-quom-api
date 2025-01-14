@@ -16,6 +16,7 @@ const changeGameStatePutValidator = [
     body("targetBoxYPercentage")
         .toFloat()
         .notEmpty()
+        .isFloat({ min: 0 })
 ]
 
 const createGamePost = asyncHandler(async (req, res, next) => {
