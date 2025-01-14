@@ -927,4 +927,24 @@ describe("Input validation", () => {
             )
             .expect(400)
     })
+
+    test("TargetBox X coordinate has a minimum of 0", async () => {
+        const res1 = await request(app)
+            .post("/")
+            .expect("Content-Type", /json/)
+            .expect(200)
+        
+        const res2 = await request(app)
+            .put("/")
+            .type("form")
+            .set("Authorization", res1.headers.authorization)
+            .send(
+                {
+                    characterId: targetBoxCoordinatePercentages.quom.id,
+                    targetBoxXPercentage: -1,
+                    targetBoxYPercentage: targetBoxCoordinatePercentages.quom.yPercentage
+                }
+            )
+            .expect(400)
+    })
 })
