@@ -988,3 +988,50 @@ describe("Input validation", () => {
             .expect(400)
     })
 })
+
+describe("Win condition", () => {
+    test("It sets playerHasWon to true after winning", async () => {
+        const res1 = await request(app)
+            .post("/")
+            .expect("Content-Type", /json/)
+            .expect(200)
+
+        const res2 = await request(app)
+            .put("/")
+            .type("form")
+            .set("Authorization", res1.headers.authorization)
+            .send(
+                {
+                    characterId: targetBoxCoordinatePercentages.quom.id,
+                    targetBoxXPercentage: targetBoxCoordinatePercentages.quom.xPercentage,
+                    targetBoxYPercentage: targetBoxCoordinatePercentages.quom.yPercentage
+                }
+            )
+
+        const res3 = await request(app)
+            .put("/")
+            .type("form")
+            .set("Authorization", res1.headers.authorization)
+            .send(
+                {
+                    characterId: targetBoxCoordinatePercentages.comal.id,
+                    targetBoxXPercentage: targetBoxCoordinatePercentages.comal.xPercentage,
+                    targetBoxYPercentage: targetBoxCoordinatePercentages.comal.yPercentage
+                }
+            )
+
+        const res4 = await request(app)
+            .put("/")
+            .type("form")
+            .set("Authorization", res1.headers.authorization)
+            .send(
+                {
+                    characterId: targetBoxCoordinatePercentages.figby.id,
+                    targetBoxXPercentage: targetBoxCoordinatePercentages.figby.xPercentage,
+                    targetBoxYPercentage: targetBoxCoordinatePercentages.figby.yPercentage
+                }
+            )
+        
+        expect(res4.body.playerHasWon).toEqual(true);
+    })
+})
