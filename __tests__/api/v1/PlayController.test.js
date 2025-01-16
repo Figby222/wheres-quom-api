@@ -1034,4 +1034,25 @@ describe("Win condition", () => {
         
         expect(res4.body.playerHasWon).toEqual(true);
     })
+
+    test("It only sets playerHasWon to true when player has won", async () => {
+        const res1 = await request(app)
+            .post("/")
+            .expect("Content-Type", /json/)
+            .expect(200)
+
+        const res2 = await request(app)
+            .put("/")
+            .type("form")
+            .set("Authorization", res1.headers.authorization)
+            .send(
+                {
+                    characterId: targetBoxCoordinatePercentages.quom.id,
+                    targetBoxXPercentage: targetBoxCoordinatePercentages.quom.xPercentage,
+                    targetBoxYPercentage: targetBoxCoordinatePercentages.quom.yPercentage
+                }
+            )
+        
+        expect(res2.body.playerHasWon).toEqual(false);
+    })
 })
