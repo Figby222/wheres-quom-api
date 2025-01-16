@@ -80,7 +80,8 @@ const changeGameStatePut = [
             success:success,
             characters: {
                 ...gameDetails.charactersFound
-            }
+            },
+            playerHasWon: true
         })
 
     })
