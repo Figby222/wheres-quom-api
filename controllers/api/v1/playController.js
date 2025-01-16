@@ -76,12 +76,14 @@ const changeGameStatePut = [
 
         const gameDetails = await db.getGameDetails(req.game.id);
 
+        const playerHasWon = !(req.body.characterId === 1);
+
         return res.status(200).json({
             success:success,
             characters: {
                 ...gameDetails.charactersFound
             },
-            playerHasWon: true
+            playerHasWon: playerHasWon
         })
 
     })
