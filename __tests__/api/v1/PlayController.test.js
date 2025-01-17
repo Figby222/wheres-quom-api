@@ -1055,4 +1055,49 @@ describe("Win condition", () => {
         
         expect(res2.body.playerHasWon).toEqual(false);
     })
+
+    test("It sets playerHasWon to true when player has won but with a different order of characters found", async () => {
+        const res1 = await request(app)
+            .post("/")
+            .expect("Content-Type", /json/)
+            .expect(200)
+        
+        const res2 = await request(app)
+            .put("/")
+            .type("form")
+            .set("Authorization", res1.headers.authorization)
+            .send(
+                {
+                    characterId: targetBoxCoordinatePercentages.figby.id,
+                    targetBoxXPercentage: targetBoxCoordinatePercentages.figby.xPercentage,
+                    targetBoxYPercentage: targetBoxCoordinatePercentages.figby.yPercentage
+                }
+            ).expect(200)
+
+        const res3 = await request(app)
+            .put("/")
+            .type("form")
+            .set("Authorization", res1.headers.authorization)
+            .send(
+                {
+                    characterId: targetBoxCoordinatePercentages.comal.id,
+                    targetBoxXPercentage: targetBoxCoordinatePercentages.comal.xPercentage,
+                    targetBoxYPercentage: targetBoxCoordinatePercentages.comal.yPercentage
+                }
+            ).expect(200)
+
+        const res4 = await request(app)
+            .put("/")
+            .type("form")
+            .set("Authorization", res1.headers.authorization)
+            .send(
+                {
+                    characterId: targetBoxCoordinatePercentages.quom.id,
+                    targetBoxXPercentage: targetBoxCoordinatePercentages.quom.xPercentage,
+                    targetBoxYPercentage: targetBoxCoordinatePercentages.quom.yPercentage
+                }
+            ).expect(200)
+
+        expect(res4.body.playerHasWon).toEqual(true);
+    })
 })
