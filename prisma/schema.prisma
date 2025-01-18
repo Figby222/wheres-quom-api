@@ -28,4 +28,5 @@ model Game {
   startTime       DateTime    @default(now())
   endTime         DateTime?
   charactersFound Character[] @relation("CharactersFoundInGame")
+  playerName      String      @default("User")
 }
