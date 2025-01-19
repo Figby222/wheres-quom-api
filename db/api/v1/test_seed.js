@@ -37,44 +37,44 @@ async function seed() {
     const game = await pool.game.createMany({
         data: [
             {
-                startTime: new Date(Date.now()).toISOString(),
-                endTime: new Date(Date.now() + ONE_SECOND_IN_MILLISECONDS * 10).toISOString()
+                startTime: Date.now(),
+                endTime: Date.now() + ONE_SECOND_IN_MILLISECONDS * 10
             },
             {
-                startTime: new Date(Date.now()).toISOString(),
-                endTime: new Date(Date.now() + ONE_SECOND_IN_MILLISECONDS * 20).toISOString() 
+                startTime: Date.now(),
+                endTime: Date.now() + ONE_SECOND_IN_MILLISECONDS * 20
             },
             {
-                startTime: new Date(Date.now()).toISOString(),
-                endTime: new Date(Date.now() + ONE_SECOND_IN_MILLISECONDS * 30).toISOString()
+                startTime: Date.now(),
+                endTime: Date.now() + ONE_SECOND_IN_MILLISECONDS * 30
             },
             {
-                startTime: new Date(Date.now()).toISOString(),
-                endTime: new Date(Date.now() + ONE_SECOND_IN_MILLISECONDS * 40).toISOString()
+                startTime: Date.now(),
+                endTime: Date.now() + ONE_SECOND_IN_MILLISECONDS * 40
             },
             {
-                startTime: new Date(Date.now()).toISOString(),
-                endTime: new Date(Date.now() + ONE_SECOND_IN_MILLISECONDS * 50).toISOString()
+                startTime: Date.now(),
+                endTime: Date.now() + ONE_SECOND_IN_MILLISECONDS * 50
             },
             {
-                startTime: new Date(Date.now()).toISOString(),
-                endTime: new Date(Date.now() + ONE_SECOND_IN_MILLISECONDS * 60).toISOString()
+                startTime: Date.now(),
+                endTime: Date.now() + ONE_SECOND_IN_MILLISECONDS * 60
             },
             {
-                startTime: new Date(Date.now()).toISOString(),
-                endTime: new Date(Date.now() + ONE_SECOND_IN_MILLISECONDS * 70).toISOString()
+                startTime: Date.now(),
+                endTime: Date.now() + ONE_SECOND_IN_MILLISECONDS * 70
             },
             {
-                startTime: new Date(Date.now()).toISOString(),
-                endTime: new Date(Date.now() + ONE_SECOND_IN_MILLISECONDS * 80).toISOString()
+                startTime: Date.now(),
+                endTime: Date.now() + ONE_SECOND_IN_MILLISECONDS * 80
             },
             {
-                startTime: new Date(Date.now()).toISOString(),
-                endTime: new Date(Date.now() + ONE_SECOND_IN_MILLISECONDS * 90).toISOString()
+                startTime: Date.now(),
+                endTime: Date.now() + ONE_SECOND_IN_MILLISECONDS * 90
             },
             {
-                startTime: new Date(Date.now()).toISOString(),
-                endTime: new Date(Date.now() + ONE_SECOND_IN_MILLISECONDS * 100).toISOString()
+                startTime: Date.now(),
+                endTime: Date.now() + ONE_SECOND_IN_MILLISECONDS * 100
             },
 
         ]
