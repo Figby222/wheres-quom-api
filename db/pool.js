@@ -17,7 +17,7 @@ const prisma = new PrismaClient({
             completionTime: {
                 needs: { endTime: true, startTime: true },
                 compute(game) {
-                    return endTime - startTime;
+                    return game.endTime ? game.endTime - game.startTime : null;
                 }
             }
         }
