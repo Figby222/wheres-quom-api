@@ -11,6 +11,17 @@ const prisma = new PrismaClient({
             url: databaseUrl
         }
     }
+}).$extends({
+    result: {
+        game: {
+            completionTime: {
+                needs: { endTime: true, startTime: true },
+                compute(game) {
+                    return endTime - startTime;
+                }
+            }
+        }
+    }
 });
 
 module.exports = prisma;
