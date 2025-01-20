@@ -17,4 +17,17 @@ const getLeaderboard = async () => {
     return leaderboard;
 }
 
-module.exports = { getLeaderboard }
+const addLeaderboardName = async (gameId, playerName) => {
+    const game = await pool.game.update({
+        where: {
+            id: gameId,
+        },
+        data: {
+            playerName: playerName
+        }
+    })
+
+    return game;
+}
+
+module.exports = { getLeaderboard, addLeaderboardName }
