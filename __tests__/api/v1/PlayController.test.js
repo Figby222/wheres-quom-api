@@ -1,6 +1,7 @@
 const router = require("../../../routers/api/v1/playRouter.js");
 const controllerUtils = require("../../../controllers/api/v1/util.js");
 const leaderboardRouter = require("../../../routers/api/v1/leaderboardRouter.js");
+require("../../../db/api/v1/test_seed.js");
 
 const { targetBoxCharacterCollision } = controllerUtils;
 
@@ -1161,8 +1162,8 @@ describe("Leaderboard", () => {
             return endDateTime;
         })
 
-        const leaderboardPOST = await request(app)
-            .post("/leaderboard")
+        const leaderboardPUT = await request(app)
+            .put("/leaderboard")
             .type("form")
             .set("Authorization", res1.headers.authorization)
             .send(
@@ -1172,7 +1173,14 @@ describe("Leaderboard", () => {
             )
             .expect(200)
         
-        expect(leaderboardPOST.body.isTop10).toEqual(true);
+        expect(leaderboardPUT.body.isTop10).toEqual(true);
+
+        const leaderboardGET = await request(app)
+            .get("/leaderboard")
+            .expect(200)
+
+
+        expect(leaderboardGET.body[0].playerName).toEqual("quom");
 
         endTimeSpy.mockRestore();
     })
