@@ -72,6 +72,17 @@ async function getGameDetails(gameId) {
     return game;
 }
 
+async function addEndTimeToGame(gameId, endTime) {
+    const game = await pool.game.update({
+        where: {
+            id: gameId,
+        },
+        data: {
+            endTime: endTime
+        }
+    })
+}
 
 
-module.exports = { createGamePost, changeGameStatePut, getCharacterDetails, addFoundCharacterToGame, getGameDetails };
+
+module.exports = { createGamePost, changeGameStatePut, getCharacterDetails, addFoundCharacterToGame, getGameDetails, addEndTimeToGame };
