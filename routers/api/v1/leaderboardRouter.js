@@ -5,6 +5,6 @@ const leaderboardRouter = Router();
 
 leaderboardRouter.get("/", leaderboardController.leaderboardGet);
 
-leaderboardRouter.post("/", leaderboardController.leaderboardPost);
+leaderboardRouter.put("/", leaderboardController.leaderboardPut);
 
 module.exports = leaderboardRouter;
