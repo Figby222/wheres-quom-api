@@ -3,7 +3,7 @@ const pool = require("../../pool.js");
 async function createGamePost() {
     const game = await pool.game.create({
         data: {
-            startTime: new Date(Date.now()).toISOString()
+            startTime: Date.now()
         }
     });
 
