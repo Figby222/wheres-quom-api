@@ -1,5 +1,10 @@
 const pool = require("../../pool.js");
 
+BigInt.prototype.toJSON = function () {
+    const int = Number.parseInt(this.toString());
+    return int ?? this.toString();
+}
+
 const getLeaderboard = async () => {
     const leaderboard = await pool.$queryRaw`
         SELECT *, "endTime" - "startTime" AS "completionTime" 
