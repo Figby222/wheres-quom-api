@@ -7,8 +7,8 @@ const leaderboardGet = asyncHandler(async (req, res) => {
     res.status(200).json(leaderboard);
 })
 
-const leaderboardPost = asyncHandler(async (req, res) => {
+const leaderboardPut = asyncHandler(async (req, res) => {
     res.status(200).json({ message: "Hi", isTop10: true });
 })
 
-module.exports = { leaderboardGet, leaderboardPost };
+module.exports = { leaderboardGet, leaderboardPut };
