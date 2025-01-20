@@ -1,4 +1,4 @@
-const { Router } = require(express);
+const { Router } = require("express");
 const leaderboardController = require("../../../controllers/api/v1/leaderboardController.js");
 
 const leaderboardRouter = Router();
