@@ -29,7 +29,7 @@ const leaderboardPut = [
         }
         const game = await db.addLeaderboardName(req.game.id, req.body.username);
 
-        res.status(200).json({ message: "Hi", isTop10: true });
+        res.status(200).json({ message: "Hi", isTop10: true, completionTime: game.completionTime });
     })
 ]
 
