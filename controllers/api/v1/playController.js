@@ -78,15 +78,21 @@ const changeGameStatePut = [
 
         const playerHasWon = gameDetails.charactersFound.length === 3;
 
+        const endTime = Date.now();
+        
+        const { startTime } = gameDetails;
 
-        await db.addEndTimeToGame(req.game.id, Date.now());
+        const completionTime = endTime - startTime;
+
+        await db.addEndTimeToGame(req.game.id, endTime);
 
         return res.status(200).json({
             success:success,
             characters: {
                 ...gameDetails.charactersFound
             },
-            playerHasWon: playerHasWon
+            playerHasWon: playerHasWon,
+            completionTime: completionTime
         })
 
     })
