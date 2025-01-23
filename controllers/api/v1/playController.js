@@ -78,7 +78,7 @@ const changeGameStatePut = [
 
         const playerHasWon = gameDetails.charactersFound.length === 3;
 
-        const endTime = Date.now();
+        const endTime = BigInt(Date.now());
         
         const { startTime } = gameDetails;
 
