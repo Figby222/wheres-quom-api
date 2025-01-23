@@ -5,8 +5,7 @@ const { body, validationResult } = require("express-validator");
 
 const validatePut = [
     body("username")
-        .toString()
-        .length({ min: 5, max: 14 })
+        .isLength({ min: 5, max: 14 })
 ]
 
 const leaderboardGet = asyncHandler(async (req, res) => {
