@@ -1142,7 +1142,13 @@ describe("Leaderboard", () => {
                 }
             )
             .expect(200);
+            
+        startTimeSpy.mockRestore();
 
+        const endTimeSpy = jest.spyOn(Date, "now").mockImplementation(() => {
+            return endDateTime;
+        })
+        
         const res4 = await request(app)
             .put("/")
             .type("form")
@@ -1156,11 +1162,6 @@ describe("Leaderboard", () => {
             )
             .expect(200);
         
-        startTimeSpy.mockRestore();
-
-        const endTimeSpy = jest.spyOn(Date, "now").mockImplementation(() => {
-            return endDateTime;
-        })
 
         const leaderboardPUT = await request(app)
             .put("/leaderboard")
