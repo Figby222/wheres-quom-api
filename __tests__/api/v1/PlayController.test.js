@@ -1,7 +1,7 @@
 const router = require("../../../routers/api/v1/playRouter.js");
 const controllerUtils = require("../../../controllers/api/v1/util.js");
 const leaderboardRouter = require("../../../routers/api/v1/leaderboardRouter.js");
-require("../../../db/api/v1/test_seed.js");
+const seed = require("../../../db/api/v1/test_seed.js");
 
 const { targetBoxCharacterCollision } = controllerUtils;
 
@@ -14,6 +14,8 @@ const db = require("../../../db/api/v1/playQueries.js");
 app.use(express.urlencoded({ extended: false }));
 app.use("/leaderboard", leaderboardRouter);
 app.use("/", router);
+
+beforeEach(() => seed());
 
 const targetBoxCoordinatePercentages = {
     quom: {
