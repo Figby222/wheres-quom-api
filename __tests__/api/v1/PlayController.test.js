@@ -10,6 +10,7 @@ const express = require("express");
 const app = express();
 
 const db = require("../../../db/api/v1/playQueries.js");
+const { itxClientDenyList } = require("@prisma/client/runtime/library");
 
 app.use(express.urlencoded({ extended: false }));
 app.use("/leaderboard", leaderboardRouter);
@@ -1186,5 +1187,65 @@ describe("Leaderboard", () => {
         expect(leaderboardGET.body[0].playerName).toEqual("quom");
 
         endTimeSpy.mockRestore();
+    })
+
+    test("It sets proper completionTime", async () => {
+        const SECONDS_IN_MILLISECONDS = 1 * 1000;
+        const currentDateTime = Date.now();
+        const endDateTime = currentDateTime + (4 * SECONDS_IN_MILLISECONDS);
+        const startTimeSpy = jest.spyOn(Date, "now").mockImplementation(() => currentDateTime);
+        
+        const res1 = await request(app)
+            .post("/")
+            .expect("Content-Type", /json/)
+            .expect(200);
+
+        const res2 = await request(app)
+            .put("/")
+            .type("form")
+            .set("Authorization", res1.headers.authorization)
+            .send(
+                {
+                    characterId: targetBoxCoordinatePercentages.quom.id,
+                    targetBoxXPercentage: targetBoxCoordinatePercentages.quom.xPercentage,
+                    targetBoxYPercentage: targetBoxCoordinatePercentages.quom.yPercentage
+                }
+            )
+            .expect(200);
+
+        const res3 = await request(app)
+            .put("/")
+            .type("form")
+            .set("Authorization", res1.headers.authorization)
+            .send(
+                {
+                    characterId: targetBoxCoordinatePercentages.comal.id,
+                    targetBoxXPercentage: targetBoxCoordinatePercentages.comal.xPercentage,
+                    targetBoxYPercentage: targetBoxCoordinatePercentages.comal.yPercentage
+                }
+            )
+            .expect(200);
+            
+        startTimeSpy.mockRestore();
+
+        const endTimeSpy = jest.spyOn(Date, "now").mockImplementation(() => {
+            return endDateTime;
+        })
+        
+        const res4 = await request(app)
+            .put("/")
+            .type("form")
+            .set("Authorization", res1.headers.authorization)
+            .send(
+                {
+                    characterId: targetBoxCoordinatePercentages.figby.id,
+                    targetBoxXPercentage: targetBoxCoordinatePercentages.figby.xPercentage,
+                    targetBoxYPercentage: targetBoxCoordinatePercentages.figby.yPercentage
+                }
+            )
+            .expect(200);
+        
+
+        expect(res4.body.completionTime).toBe(endDateTime - currentDateTime);
     })
 })
