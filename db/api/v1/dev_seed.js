@@ -5,24 +5,24 @@ async function seed() {
         data: [
             {
                 name: "quom",
-                positionLeft: 4,
-                positionTop: 8,
-                positionRight: 8,
-                positionBottom: 14,
+                positionLeft: 16.40,
+                positionTop: 83.86,
+                positionRight: 17.60,
+                positionBottom: 87.74,
             },
             {
                 name: "Comal",
-                positionLeft: 64,
-                positionTop: 88,
-                positionRight: 68,
-                positionBottom: 94,
+                positionLeft: 75.10,
+                positionTop: 75.27,
+                positionRight: 76.76,
+                positionBottom: 79.26,
             },
             {
                 name: "Figby",
-                positionLeft: 86,
-                positionTop: 46,
-                positionRight: 90,
-                positionBottom: 53
+                positionLeft: 47.27,
+                positionTop: 39.33,
+                positionRight: 48.26,
+                positionBottom: 44.80
             }
         ]
     })
