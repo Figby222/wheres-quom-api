@@ -8,13 +8,13 @@ datasource db {
 }
 
 model Character {
-  id             Int    @id @default(autoincrement())
-  name           String @unique
-  positionBottom Int
-  positionLeft   Int
-  positionRight  Int
-  positionTop    Int
-  gamesFoundIn   Game[] @relation("CharactersFoundInGame")
+  id             Int     @id @default(autoincrement())
+  name           String  @unique
+  positionBottom Decimal
+  positionLeft   Decimal
+  positionRight  Decimal
+  positionTop    Decimal
+  gamesFoundIn   Game[]  @relation("CharactersFoundInGame")
 }
 
 model Game {
