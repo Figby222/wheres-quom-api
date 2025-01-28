@@ -1,6 +1,8 @@
 const pool = require("../../pool.js");
 
 async function seed() {
+    await pool.character.deleteMany({});
+    
     const characters = await pool.character.createMany({
         data: [
             {
