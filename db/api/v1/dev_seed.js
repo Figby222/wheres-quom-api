@@ -7,6 +7,7 @@ async function seed() {
     const characters = await pool.character.createMany({
         data: [
             {
+                id: 1,
                 name: "quom",
                 positionLeft: 16.40,
                 positionTop: 83.86,
@@ -14,6 +15,7 @@ async function seed() {
                 positionBottom: 87.74,
             },
             {
+                id: 2,
                 name: "Comal",
                 positionLeft: 75.10,
                 positionTop: 75.27,
@@ -21,6 +23,7 @@ async function seed() {
                 positionBottom: 79.26,
             },
             {
+                id: 3,
                 name: "Figby",
                 positionLeft: 47.27,
                 positionTop: 39.33,
