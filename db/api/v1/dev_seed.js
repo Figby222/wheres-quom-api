@@ -35,7 +35,7 @@ async function seed() {
 
     const game = await pool.game.create({
         data: {
-            startTime: new Date(Date.now()).toISOString()
+            startTime: Date.now()
         }
     })
 }
