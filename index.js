@@ -13,6 +13,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/api", routers.apiRouter);
 
 app.use((error, req, res, next) => {
+    console.log(error);
     res.status(500).json({
         error: error
     })
