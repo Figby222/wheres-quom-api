@@ -10,10 +10,10 @@ datasource db {
 model Character {
   id             Int     @id @default(autoincrement())
   name           String  @unique
-  positionBottom Decimal
-  positionLeft   Decimal
-  positionRight  Decimal
-  positionTop    Decimal
+  positionBottom Float
+  positionLeft   Float
+  positionRight  Float
+  positionTop    Float
   gamesFoundIn   Game[]  @relation("CharactersFoundInGame")
 }
 
