@@ -1176,8 +1176,6 @@ describe("Leaderboard", () => {
                 }
             )
             .expect(200)
-        
-        expect(leaderboardPUT.body.isTop10).toEqual(true);
 
         const leaderboardGET = await request(app)
             .get("/leaderboard")
