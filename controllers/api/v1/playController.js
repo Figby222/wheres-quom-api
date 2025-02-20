@@ -37,7 +37,7 @@ const createGamePost = asyncHandler(async (req, res, next) => {
             imageSrc: imageSrc,
             token: token
         })
-    })(req, res, next);
+    });
 })
 
 const changeGameStatePut = [
