@@ -28,7 +28,7 @@ const createGamePost = asyncHandler(async (req, res, next) => {
             return;
         }
 
-        const imageSrc = `${process.env.WEBSITE_URL}/public/levels/01/wheres-quom.webp`
+        const imageSrc = `${process.env.WEBSITE_URL}/levels/01/wheres-quom.webp`
 
         res.setHeader("Authorization", `Bearer ${token}`);
         res.setHeader("Access-Control-Expose-Headers", `Authorization`)
