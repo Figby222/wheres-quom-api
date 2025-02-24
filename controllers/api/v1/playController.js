@@ -5,6 +5,8 @@ const utils = require("./util.js");
 require("dotenv").config();
 const { body, validationResult } = require("express-validator");
 
+const characterDb = require("../../../db/api/v1/characterQueries.js");
+
 const changeGameStatePutValidator = [
     body("characterId")
         .toInt()
@@ -22,20 +24,22 @@ const changeGameStatePutValidator = [
 const createGamePost = asyncHandler(async (req, res, next) => {
     const gameInstance = await db.createGamePost();
 
-    jwt.sign({ id: gameInstance.id }, process.env.JWT_SECRET, function (err, token) {
+    jwt.sign({ id: gameInstance.id }, process.env.JWT_SECRET, async function (err, token) {
         if(err) {
             next(err);
             return;
         }
 
-        const imageSrc = `${process.env.WEBSITE_URL}/levels/01/wheres-quom.webp`
+        const imageSrc = `${process.env.WEBSITE_URL}/levels/01/wheres-quom.webp`;
+        const charactersDetails = await characterDb.getCharactersDetails();
 
         res.setHeader("Authorization", `Bearer ${token}`);
         res.setHeader("Access-Control-Expose-Headers", `Authorization`)
 
         res.json({
+            characters: charactersDetails,
             imageSrc: imageSrc,
-            token: token
+            token: token,
         })
     });
 })
